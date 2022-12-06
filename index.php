@@ -107,7 +107,6 @@ shuffle($fotosPortafolio);
 ?>
 <!DOCTYPE html>
 <html lang="en" class="has-navbar-fixed-top">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -119,192 +118,13 @@ shuffle($fotosPortafolio);
 </head>
 
 <body>
-    <nav class="navbar is-link is-fixed-top" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="https://parzibyte.me">
-                <img src="./images/logo.svg" width="112" height="28">
-            </a>
-
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-end">
-                <a class="navbar-item" href="#"><?php echo traducir("Inicio"); ?></a>
-                <a class="navbar-item" href="#servicios"><?php echo traducir("Servicios"); ?></a>
-                <a class="navbar-item" href="#portafolio"><?php echo traducir("Portafolio"); ?></a>
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-primary">
-                            <strong>
-                                <?php echo traducir("Contacto"); ?>
-                            </strong>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <section class="hero is-link">
-        <div class="hero-body">
-            <div class="columns">
-                <div class="column is-two-thirds">
-                    <p class="title">
-                        <?php echo traducir("Estoy aquí para ayudarte, brindando mis servicios de consultoría informática"); ?>
-                    </p>
-                    <p class="subtitle">
-                        <?php echo traducir("Hola, soy Parzibyte. Puedo ayudar con tu tarea de programación, desarrollar cualquier software web o móvil, configurar servidores y todo lo relacionado con programación, TI e informática"); ?>
-                    </p>
-                    <div class="buttons">
-                        <button class="button is-info is-rounded"><?php echo traducir("Servicios"); ?></button>
-                        <button class="button is-success is-rounded"><?php echo traducir("Contacto"); ?></button>
-                        <button class="button is-warning is-rounded"><?php echo traducir("Blog"); ?></button>
-                    </div>
-                </div>
-                <div class="column">
-                    <img src="./images/freelance-developer.svg" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="hero" id="servicios">
-        <div class="hero-body">
-            <div class="columns">
-                <div class="column">
-                    <p class="title">
-                        <?php echo traducir("Servicios"); ?>
-                    </p>
-                    <p class="subtitle">
-                        <?php echo traducir("Mira cómo puedo ayudarte"); ?>
-                    </p>
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <img src="./images/programming-help.svg" alt="">
-                    <div class="title">
-                        <?php echo traducir("Consultoría y ayuda en general"); ?>
-                    </div>
-                    <p>
-                        <?php echo traducir("Resolver dudas en tu tarea, solucionar problemas de código (en mi proyecto o el tuyo), preguntas sobre mis programas, asesorías o ayuda en general con cualquier cosa relacionada a la programación"); ?>
-                    </p>
-                </div>
-                <div class="column">
-                    <img src="./images/homework.svg" alt="">
-                    <div class="title">
-                        <?php echo traducir("Ayuda con tu tarea"); ?>
-                    </div>
-                    <p>
-                        <?php echo traducir("Solución a ejercicios de programación, desarrollo de proyectos y sistemas, entre otros"); ?>
-                    </p>
-                </div>
-                <div class="column">
-                    <img src="./images/software-editing.svg" alt="">
-                    <div class="title">
-                        <?php echo traducir("Modificación de uno de mis sistemas"); ?>
-                    </div>
-                    <p>
-                        <?php echo traducir("Agregar o modificar características a mis programas ya existentes en mi blog"); ?>
-                    </p>
-                </div>
-
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <img src="./images/software-developer.svg" alt="">
-                    <div class="title">
-                        <?php echo traducir("Creación de software"); ?>
-                    </div>
-                    <p>
-                        <?php echo traducir("Crear o clonar software a la medida. Web, frontend, backend, consola, aplicación móvil, Arduino, Linux, etcétera"); ?>
-                    </p>
-                </div>
-                <div class="column">
-                    <img src="./images/server-admin.svg" alt="">
-                    <div class="title">
-                        <?php echo traducir("Hosting y servidores"); ?>
-                    </div>
-                    <p>
-                        <?php echo traducir("Colocar tu marca en internet, crear página web, alojar tu sistema en mi servidor o configurar el tuyo (solo servidores Linux basados en Debian)"); ?>
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <section class="hero" id="portafolio">
-        <div class="hero-body">
-            <div class="columns">
-                <div class="column">
-                    <p class="title">
-                        <?php echo traducir("Portafolio"); ?>
-                    </p>
-                    <p class="subtitle">
-                        <?php echo traducir("Permíteme mostrarte un poco de lo que he creado"); ?>
-                    </p>
-                </div>
-            </div>
-            <div class="columns" style="padding:10px; background-color:#fafafa;">
-                <div id="slider">
-                    <?php
-                    foreach ($fotosPortafolio as $foto) {
-                    ?>
-                        <div>
-                            <img src="<?php echo $foto["imagen"]; ?>" alt="">
-                            <p class="is-size-4 has-text-centered"><a target="blank" href="<?php echo $foto["enlace"]; ?>">
-                                    <?php echo traducir("Ver"); ?>
-                                </a>
-                            </p>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <p>
-                        <?php echo traducir("Mira mis proyectos open source: ") ?>
-                        <a href="https://github.com/parzibyte?tab=repositories&q=&type=public&language=">https://github.com/parzibyte?tab=repositories&q=&type=public&language=</a>
-                    </p>
-                    <p>
-                        <?php echo traducir("O visita mi blog para ver mis últimas entradas:") ?>
-                        <a href="https://parzibyte.me/blog">https://parzibyte.me/blog</a>
-                    </p>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section">
-
-        <div class="container">
-
-            <div class="columns">
-
-                <div class="column">
-
-                </div>
-            </div>
-            <div class="columns">
-                <div class="column">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere illum ex possimus nemo! In aliquid esse cupiditate dicta. Possimus praesentium adipisci atque delectus veniam dolores minima reiciendis sunt nesciunt repellat?</div>
-            </div>
-
-            <div class="columns">
-                <div class="column">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed cum explicabo sunt saepe sequi, tenetur ducimus voluptates non nisi sapiente quos expedita cumque odio earum deleniti magnam dicta esse necessitatibus!</div>
-                <div class="column">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta debitis aliquam doloribus aperiam eos a officia architecto obcaecati, minus voluptas, quae totam corporis error consequuntur ratione accusamus. Iste, autem repellendus?</div>
-            </div>
-            <h1 class="title">
-                Hello World
-            </h1>
-            <p class="subtitle">
-                My first website with <strong>Bulma</strong>!
-            </p>
-        </div>
-    </section>
-
+    <?php include_once "nav.php"; ?>
+    <?php include_once "inicio.php"; ?>
+    <?php include_once "servicios.php"; ?>
+    <?php include_once "portafolio.php"; ?>
+    <?php include_once "contacto.php"; ?>
+    <?php include_once "footer.php"; ?>
+    
     <script src="./js/main.js"></script>
 </body>
 
