@@ -107,6 +107,7 @@ shuffle($fotosPortafolio);
 ?>
 <!DOCTYPE html>
 <html lang="en" class="has-navbar-fixed-top">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -115,6 +116,7 @@ shuffle($fotosPortafolio);
     <link rel="stylesheet" href="./css/tiny-slider.css">
     <title><?php echo traducir("Parzibyte - Programador freelance"); ?></title>
     <script src="./js/tiny-slider.js" type="text/javascript"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -124,7 +126,7 @@ shuffle($fotosPortafolio);
     <?php include_once "portafolio.php"; ?>
     <?php include_once "contacto.php"; ?>
     <?php include_once "footer.php"; ?>
-    
+
     <script src="./js/main.js"></script>
 </body>
 

@@ -18,7 +18,7 @@
                 <a class="navbar-item" href="#portafolio"><?php echo traducir("Portafolio"); ?></a>
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-primary">
+                        <a class="button is-primary" href="#contacto">
                             <strong>
                                 <?php echo traducir("Contacto"); ?>
                             </strong>
