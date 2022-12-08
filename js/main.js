@@ -191,6 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (respuesta === true) {
             Swal.fire('Mensaje enviado', 'He recibido tu mensaje, te responderé con el presupuesto y tiempo de entrega al correo proporcionado lo más pronto posible. ¡Gracias!', 'success')
             $formContacto.reset();
+            onOpcionCambiada();
         } else {
             Swal.fire('Error', "Ocurrió un error al enviar el mensaje: " + respuesta, 'error')
         }
