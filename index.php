@@ -112,10 +112,11 @@ shuffle($fotosPortafolio);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./css/bulma.min.css">
     <link rel="stylesheet" href="./css/tiny-slider.css">
     <title><?php echo traducir("Parzibyte - Programador freelance"); ?></title>
     <script src="./js/tiny-slider.js" type="text/javascript"></script>
+    <script src="./js/sweetalert2.all.min.js" type="text/javascript"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
@@ -126,7 +127,6 @@ shuffle($fotosPortafolio);
     <?php include_once "portafolio.php"; ?>
     <?php include_once "contacto.php"; ?>
     <?php include_once "footer.php"; ?>
-
     <script src="./js/main.js"></script>
 </body>
 

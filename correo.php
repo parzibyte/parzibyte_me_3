@@ -77,9 +77,11 @@ if (!filter_var($payload->correo, FILTER_VALIDATE_EMAIL)) {
     echo json_encode("Correo inválido");
     exit;
 }
-if (!isset($payload->tecnologia)) {
-    echo json_encode("No hay tecnología");
-    exit;
+if ($payload->trabajo !== "modificacion") {
+    if (!isset($payload->tecnologia)) {
+        echo json_encode("No hay tecnología");
+        exit;
+    }
 }
 if (!isset($payload->mensaje)) {
     echo json_encode("No hay mensaje");
@@ -104,7 +106,7 @@ if ($payload->trabajo === "modificacion") {
 $ip = empty($_SERVER["REMOTE_ADDR"]) ? "Desconocida" : $_SERVER["REMOTE_ADDR"];
 $asunto = "";
 $cuerpo = "";
-$datos = sprintf("Fecha: %s. Presupuesto: %d USD. Solicitud: %s.\nEste mensaje fue enviado desde el sitio web de parzibyte.me con la IP %s", $fecha, $presupuesto, $mensaje, $ip);
+$correo = $payload->correo;
 $destinatario = "parzibyte@gmail.com";
 $encabezados = "From: $correo\r\n";
 $encabezados .= "Sender: contacto@parzibyte.me\r\n";

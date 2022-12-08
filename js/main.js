@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
         $detallesModificacion = document.querySelector("#detallesModificacion"),
         $detallesCreacion = document.querySelector("#detallesCreacion"),
         $detallesCompra = document.querySelector("#detallesCompra"),
-        $pieFormulario = document.querySelector("#pieFormulario");
+        $pieFormulario = document.querySelector("#pieFormulario"),
+        $botonFormulario = document.querySelector("#botonFormulario");
 
     const $formContacto = document.querySelector("#formContacto");
     const ocultarTodo = () => {
@@ -180,17 +181,20 @@ document.addEventListener("DOMContentLoaded", () => {
         enviarPayload(payload);
     };
     const enviarPayload = async (payload) => {
-        console.log({ payload });
+        $botonFormulario.classList.add("is-loading");
         const response = await fetch("./correo.php", {
             method: "POST",
             body: JSON.stringify(payload),
         });
         const respuesta = await response.json();
+        $botonFormulario.classList.remove("is-loading");
         if (respuesta === true) {
-            alert("Mensaje enviado");
+            Swal.fire('Mensaje enviado', 'He recibido tu mensaje, te responderé con el presupuesto y tiempo de entrega al correo proporcionado lo más pronto posible. ¡Gracias!', 'success')
+            $formContacto.reset();
         } else {
-            alert("Error: " + respuesta);
+            Swal.fire('Error', "Ocurrió un error al enviar el mensaje: " + respuesta, 'error')
         }
+        grecaptcha.reset();
     };
     $formContacto.addEventListener("submit", evento => {
         evento.preventDefault();
@@ -208,23 +212,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
     onOpcionCambiada();
-
-
-
     tns({
         container: '#slider',
         slideBy: 'page',
         mouseDrag: true,
         items: 3,
         lazyload: true,
-
-        //autoWidth:true,
         autoplay: true,
         rewind: true,
         gutter: 10,
         controls: false,
         nav: false,
         autoplayButtonOutput: false,
-
     });
 });
