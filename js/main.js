@@ -6,7 +6,31 @@ document.addEventListener("DOMContentLoaded", () => {
         $detallesCreacion = document.querySelector("#detallesCreacion"),
         $detallesCompra = document.querySelector("#detallesCompra"),
         $pieFormulario = document.querySelector("#pieFormulario"),
-        $botonFormulario = document.querySelector("#botonFormulario");
+        $botonFormulario = document.querySelector("#botonFormulario"),
+        $minutos = document.querySelector("#minutos"),
+        $contenedorCosto = document.querySelector("#contenedorCosto");
+
+
+    const reflejarCosto = () => {
+        const minutos = parseInt($minutos.value);
+        let costoPorMinutoEnDolares = 10;
+        if (minutos <= 10) {
+            costoPorMinutoEnDolares = 0.2;
+        } else if (minutos > 10 && minutos <= 20) {
+            costoPorMinutoEnDolares = 0.4;
+        } else if (minutos > 20 && minutos <= 30) {
+            costoPorMinutoEnDolares = 0.5;
+        } else if (minutos > 30 && minutos <= 60) {
+            costoPorMinutoEnDolares = 1;
+        } else if (minutos > 60) {
+            costoPorMinutoEnDolares = 1.5;
+        }
+        const costo = minutos * costoPorMinutoEnDolares;
+        $contenedorCosto.innerHTML = `Por <strong>${minutos}</strong> minutos el costo es de <strong>${costo}</strong> USD (dólar estadounidense)<br>`;
+    };
+    reflejarCosto();
+
+    $minutos.addEventListener("input", reflejarCosto);
 
     const $formContacto = document.querySelector("#formContacto");
     const ocultarTodo = () => {
