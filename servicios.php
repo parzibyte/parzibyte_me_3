@@ -3,60 +3,60 @@
             <div class="columns">
                 <div class="column">
                     <p class="title">
-                        <?php echo traducir("Servicios"); ?>
+                        <?php echo traducir("servicios"); ?>
                     </p>
                     <p class="subtitle">
-                        <?php echo traducir("Mira cómo puedo ayudarte"); ?>
+                        <?php echo traducir("mira_como_puedo_ayudarte"); ?>
                     </p>
                 </div>
             </div>
             <div class="columns">
                 <div class="column">
-                    <img src="./images/programming-help.svg" alt="">
+                    <img src="./images/programming-help.svg" alt="<?php echo traducir("consultoria"); ?>">
                     <div class="title">
-                        <?php echo traducir("Consultoría y ayuda en general"); ?>
+                        <?php echo traducir("consultoria"); ?>
                     </div>
                     <p>
-                        <?php echo traducir("Resolver dudas en tu tarea, solucionar problemas de código (en mi proyecto o el tuyo), preguntas sobre mis programas, asesorías o ayuda en general con cualquier cosa relacionada a la programación"); ?>
+                        <?php echo traducir("consultoria_descripcion"); ?>
                     </p>
                 </div>
                 <div class="column">
-                    <img src="./images/homework.svg" alt="">
+                    <img src="./images/homework.svg" alt="<?php echo traducir("tarea"); ?>">
                     <div class="title">
-                        <?php echo traducir("Ayuda con tu tarea"); ?>
+                        <?php echo traducir("tarea"); ?>
                     </div>
                     <p>
-                        <?php echo traducir("Solución a ejercicios de programación, desarrollo de proyectos y sistemas, entre otros"); ?>
+                        <?php echo traducir("tarea_descripcion"); ?>
                     </p>
                 </div>
                 <div class="column">
-                    <img src="./images/software-editing.svg" alt="">
+                    <img src="./images/software-editing.svg" alt="<?php echo traducir("modificacion"); ?>">
                     <div class="title">
-                        <?php echo traducir("Modificación de uno de mis sistemas"); ?>
+                        <?php echo traducir("modificacion"); ?>
                     </div>
                     <p>
-                        <?php echo traducir("Agregar o modificar características a mis programas ya existentes en mi blog"); ?>
+                        <?php echo traducir("modificacion_descripcion"); ?>
                     </p>
                 </div>
 
             </div>
             <div class="columns">
                 <div class="column">
-                    <img src="./images/software-developer.svg" alt="">
+                    <img src="./images/software-developer.svg" alt="<?php echo traducir("creacion"); ?>">
                     <div class="title">
-                        <?php echo traducir("Creación de software"); ?>
+                        <?php echo traducir("creacion"); ?>
                     </div>
                     <p>
-                        <?php echo traducir("Crear o clonar software a la medida. Web, frontend, backend, consola, aplicación móvil, Arduino, Linux, etcétera"); ?>
+                        <?php echo traducir("creacion_descripcion"); ?>
                     </p>
                 </div>
                 <div class="column">
-                    <img src="./images/server-admin.svg" alt="">
+                    <img src="./images/server-admin.svg" alt="<?php echo traducir("hosting_servidores"); ?>">
                     <div class="title">
-                        <?php echo traducir("Hosting y servidores"); ?>
+                        <?php echo traducir("hosting_servidores"); ?>
                     </div>
                     <p>
-                        <?php echo traducir("Colocar tu marca en internet, crear página web, alojar tu sistema en mi servidor o configurar el tuyo (solo servidores Linux basados en Debian)"); ?>
+                        <?php echo traducir("hosting_servidores_descripcion"); ?>
                     </p>
                 </div>
 

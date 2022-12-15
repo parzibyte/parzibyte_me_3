@@ -3,29 +3,29 @@
         <div class="columns">
             <div class="column">
                 <p class="title">
-                    <?php echo traducir("Contacto"); ?>
+                    <?php echo traducir("contacto"); ?>
                 </p>
                 <p class="subtitle">
-                    <?php echo traducir("Encantado de ayudarte"); ?>
+                    <?php echo traducir("encantado_ayudarte"); ?>
                 </p>
             </div>
         </div>
         <div class="columns">
             <div class="column is-one-third">
-                <img src="./images/contact.svg" alt="">
+                <img src="./images/contact.svg" alt="<?php echo traducir("contacto"); ?>">
             </div>
             <div class="column">
                 <form action="correo.php" method="post" id="formContacto">
                     <div class="field">
-                        <label class="label"><?php echo traducir("¿Cómo puedo ayudarte?") ?></label>
+                        <label class="label"><?php echo traducir("como_puedo_ayudarte") ?></label>
                         <div class="control">
                             <div class="select">
                                 <select name="tipoTrabajo" id="selectTipoTrabajo">
-                                    <option value="consultoria"><?php echo traducir("Consultoría y ayuda") ?></option>
-                                    <option value="tarea"><?php echo traducir("Tarea o proyecto escolar") ?></option>
-                                    <option value="modificacion"><?php echo traducir("Modificación de software creado por Parzibyte") ?></option>
-                                    <option value="creacion"><?php echo traducir("Creación de software") ?></option>
-                                    <option value="compra"><?php echo traducir("Compra de plugin, software por licencia o código fuente") ?></option>
+                                    <option value="consultoria"><?php echo traducir("consultoria") ?></option>
+                                    <option value="tarea"><?php echo traducir("tarea") ?></option>
+                                    <option value="modificacion"><?php echo traducir("modificacion") ?></option>
+                                    <option value="creacion"><?php echo traducir("creacion") ?></option>
+                                    <option value="compra"><?php echo traducir("compra") ?></option>
                                 </select>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="field">
                             <div class="control">
-                                <button id="botonFormulario" class="button is-link"><?php echo traducir("Enviar") ?></button>
+                                <button id="botonFormulario" class="button is-link"><?php echo traducir("enviar") ?></button>
                             </div>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 
         <div class="columns">
             <div class="column">
-                <strong>Conéctate conmigo (no responderé mensajes, solo puedes seguirme)</strong>
+                <strong><?php echo traducir("conecta_conmigo") ?></strong>
                 <ul>
                     <li><a href="https://github.com/parzibyte">GitHub</a></li>
                     <li><a href="https://facebook.com/parzibyte.fanpage">Facebook</a></li>
@@ -14,27 +14,32 @@
                 </ul>
             </div>
             <div class="column">
-                <strong>Menú</strong>
+                <strong><?php echo traducir("navegacion") ?></strong>
                 <ul>
-                    <li> <a href="#">Inicio</a> </li>
-                    <li> <a href="#servicios">Servicios</a> </li>
-                    <li> <a href="#portafolio">Portafolio</a> </li>
-                    <li> <a href="#contacto">Contacto</a> </li>
+                    <li> <a href="#"><?php echo traducir("inicio") ?></a> </li>
+                    <li> <a href="#servicios"><?php echo traducir("servicios") ?></a> </li>
+                    <li> <a href="#portafolio"><?php echo traducir("portafolio") ?></a> </li>
+                    <li> <a href="#contacto"><?php echo traducir("contacto") ?></a> </li>
                 </ul>
             </div>
             <div class="column">
-                <strong>Más</strong>
+                <strong><?php echo traducir("mas") ?></strong>
                 <ul>
                     <li>
-                        <a href="https://parzibyte.me/blog/">Blog</a>
+                        <a href="https://parzibyte.me/blog/"><?php echo traducir("blog") ?></a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="columns">
             <div class="column">
-                <h3 class="is-size-3">Parzibyte.me</h3>
-                <p>&copy; 2017-<?php echo date("Y"); ?> Parzibyte. Todos los derechos reservados.</p>
+                <h3 class="is-size-3"><?php echo traducir("titulo_pagina") ?></h3>
+                <p>&copy; 2017-<?php echo date("Y");
+                                echo "&nbsp;";
+                                echo traducir("copyright"); ?>
+                                <br>
+                    <?php echo traducir("sitio_opensource") ?>&nbsp;<a target="blank" href="https://github.com/parzibyte/parzibyte_me_3"><?php echo traducir("ver_codigo") ?></a>
+                </p>
             </div>
         </div>
     </div>

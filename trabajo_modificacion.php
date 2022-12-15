@@ -1,46 +1,45 @@
 <div id="detallesModificacion">
     <div class="notification is-danger">
-        Agradecería si tienes un PDF explicando lo que necesitas como se indica en
-        <a target="_blank" href="https://parzibyte.me/blog/2022/04/17/solicitar-software-personalizado-cambios-uno-existente/">https://parzibyte.me/blog/2022/04/17/solicitar-software-personalizado-cambios-uno-existente/</a>
+        <?php echo traducir("trabajo_creacion_pdf") ?>
     </div>
     <div class="field">
         <label class="label">
-            <?php echo traducir("Correo electrónico") ?>
+            <?php echo traducir("correo_electronico") ?>
         </label>
         <div class="control">
-            <input name="correoModificacion" class="input" type="email" placeholder="<?php echo traducir("Escribe tu correo electrónico"); ?>">
+            <input name="correoModificacion" class="input" type="email" placeholder="<?php echo traducir("placeholder_correo_electronico"); ?>">
         </div>
     </div>
     <div class="field">
         <label class="label">
-            <?php echo traducir("Confirmar correo electrónico") ?>
+            <?php echo traducir("confirmar_correo_electronico") ?>
         </label>
         <div class="control">
-            <input name="confirmarCorreoModificacion" class="input" type="email" placeholder="<?php echo traducir("Vuelve a escribir tu correo electrónico"); ?>">
+            <input name="confirmarCorreoModificacion" class="input" type="email" placeholder="<?php echo traducir("placeholder_confirmar_correo_electronico"); ?>">
         </div>
     </div>
     <div class="field">
         <label class="label">
-            <?php echo traducir("Enlace del post del blog o vídeo de YouTube del sistema: ") ?>
+            <?php echo traducir("trabajo_modificacion_enlace_sistema") ?>
         </label>
         <div class="control">
-            <input name="enlaceModificacion" class="input" type="text" placeholder="<?php echo traducir("Link del lugar donde viste el sistema"); ?>">
+            <input name="enlaceModificacion" class="input" type="text" placeholder="<?php echo traducir("placeholder_trabajo_modificacion_enlace_sistema"); ?>">
         </div>
     </div>
     <div class="field">
-        <label class="label"><?php echo traducir("Describe los cambios que necesitas:") ?></label>
+        <label class="label"><?php echo traducir("describe_cambios") ?></label>
         <div class="control">
-            <textarea name="mensajeModificacion" class="textarea" placeholder="<?php echo traducir("Mensaje") ?>"></textarea>
+            <textarea name="mensajeModificacion" class="textarea" placeholder="<?php echo traducir("mensaje") ?>"></textarea>
         </div>
     </div>
     <div class="notification is-success">
-        <strong>Nota:</strong> si tienes un PDF puedes subirlo a Google Drive, WeTransfer, etcétera y copiar el enlace/link en el campo del mensaje junto con las demás especificaciones
+        <?php echo traducir("nota_subir_pdf") ?>
     </div>
     <div class="field">
         <div class="control">
             <label class="checkbox">
                 <input name="terminosModificacion" type="checkbox">
-                Acepto los <a target="blank" href="https://parzibyte.me/blog/2022/11/05/consideraciones-modificacion-creacion-software/">términos y condiciones</a>
+                <?php echo traducir("trabajo_modificacion_acepta_terminos") ?>
             </label>
         </div>
     </div>

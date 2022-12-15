@@ -13,14 +13,14 @@
 
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-end">
-                <a class="navbar-item" href="#"><?php echo traducir("Inicio"); ?></a>
-                <a class="navbar-item" href="#servicios"><?php echo traducir("Servicios"); ?></a>
-                <a class="navbar-item" href="#portafolio"><?php echo traducir("Portafolio"); ?></a>
+                <a class="navbar-item" href="#"><?php echo traducir("inicio"); ?></a>
+                <a class="navbar-item" href="#servicios"><?php echo traducir("servicios"); ?></a>
+                <a class="navbar-item" href="#portafolio"><?php echo traducir("portafolio"); ?></a>
                 <div class="navbar-item">
                     <div class="buttons">
                         <a class="button is-primary" href="#contacto">
                             <strong>
-                                <?php echo traducir("Contacto"); ?>
+                                <?php echo traducir("contacto"); ?>
                             </strong>
                         </a>
                     </div>

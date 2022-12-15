@@ -3,10 +3,10 @@
         <div class="columns">
             <div class="column">
                 <p class="title">
-                    <?php echo traducir("Portafolio"); ?>
+                    <?php echo traducir("portafolio"); ?>
                 </p>
                 <p class="subtitle">
-                    <?php echo traducir("Permíteme mostrarte un poco de lo que he creado"); ?>
+                    <?php echo traducir("permiteme_mostrar_portafolio"); ?>
                 </p>
             </div>
         </div>
@@ -18,7 +18,7 @@
                     <div>
                         <img src="<?php echo $foto["imagen"]; ?>" alt="">
                         <p class="is-size-4 has-text-centered"><a target="blank" href="<?php echo $foto["enlace"]; ?>">
-                                <?php echo traducir("Ver"); ?>
+                                <?php echo traducir("ver"); ?>
                             </a>
                         </p>
                     </div>
@@ -28,11 +28,11 @@
         <div class="columns">
             <div class="column">
                 <p>
-                    <?php echo traducir("Mira mis proyectos open source: ") ?>
+                    <?php echo traducir("mira_proyectos_open_source") ?>
                     <a href="https://github.com/parzibyte?tab=repositories&q=&type=public&language=">https://github.com/parzibyte?tab=repositories&q=&type=public&language=</a>
                 </p>
                 <p>
-                    <?php echo traducir("O visita mi blog para ver mis últimas entradas:") ?>
+                    <?php echo traducir("visita_blog") ?>
                     <a href="https://parzibyte.me/blog">https://parzibyte.me/blog</a>
                 </p>
 

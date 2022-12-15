@@ -1,7 +1,34 @@
 <?php
-function traducir($mensaje)
+include_once "vendor/autoload.php";
+
+use Symfony\Component\Translation\Loader\JsonFileLoader;
+use Symfony\Component\Translation\Translator;
+
+function cadenaEmpiezaCon($cadena, $busqueda)
 {
-    return $mensaje;
+    return mb_substr($cadena, 0, mb_strlen($busqueda)) === $busqueda;
+}
+
+function obtenerIdioma()
+{
+    $idiomaDetectado = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+    /*
+    Si es algo como es_MX, es_US, etcétera, lo mandamos directamente a "es"
+    Si no, lo dejamos intacto y caerá por defecto en inglés
+     */
+    $idioma = cadenaEmpiezaCon($idiomaDetectado, "es") ? "es" : $idiomaDetectado;
+    return $idioma;
+}
+function traducir($cadena)
+{
+
+    $idioma = obtenerIdioma();
+    $traductor = new Translator($idioma);
+    $traductor->addLoader("json", new JsonFileLoader());
+    $traductor->addResource("json", "idioma_es.json", "es");
+    $traductor->addResource("json", "idioma_en.json", "en");
+    $traductor->setFallbackLocales(["en"]); // Si no se encuentra el idioma, utilizamos en por defecto
+    return $traductor->trans($cadena);
 }
 ?>
 <?php
@@ -106,7 +133,7 @@ $fotosPortafolio = [
 shuffle($fotosPortafolio);
 ?>
 <!DOCTYPE html>
-<html lang="en" class="has-navbar-fixed-top">
+<html lang="<?php echo obtenerIdioma();?>" class="has-navbar-fixed-top">
 
 <head>
     <meta charset="UTF-8">
@@ -114,7 +141,7 @@ shuffle($fotosPortafolio);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/bulma.min.css">
     <link rel="stylesheet" href="./css/tiny-slider.css">
-    <title><?php echo traducir("Parzibyte - Programador freelance"); ?></title>
+    <title><?php echo traducir("titulo_pagina"); ?></title>
     <script src="./js/tiny-slider.js" type="text/javascript"></script>
     <script src="./js/sweetalert2.all.min.js" type="text/javascript"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>

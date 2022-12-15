@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
         $pieFormulario = document.querySelector("#pieFormulario"),
         $botonFormulario = document.querySelector("#botonFormulario"),
         $minutos = document.querySelector("#minutos"),
-        $contenedorCosto = document.querySelector("#contenedorCosto");
+        $contenedorCosto = document.querySelector("#contenedorCosto"),
+        $contenedorMinutos = document.querySelector("#contenedorMinutos");
 
 
     const reflejarCosto = () => {
@@ -26,7 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
             costoPorMinutoEnDolares = 1.5;
         }
         const costo = minutos * costoPorMinutoEnDolares;
-        $contenedorCosto.innerHTML = `Por <strong>${minutos}</strong> minutos el costo es de <strong>${costo}</strong> USD (dólar estadounidense)<br>`;
+        $contenedorMinutos.textContent = minutos;
+        $contenedorCosto.textContent = costo;
     };
     reflejarCosto();
 
