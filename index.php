@@ -1,37 +1,5 @@
 <?php
-include_once "vendor/autoload.php";
-
-use Symfony\Component\Translation\Loader\JsonFileLoader;
-use Symfony\Component\Translation\Translator;
-
-function cadenaEmpiezaCon($cadena, $busqueda)
-{
-    return mb_substr($cadena, 0, mb_strlen($busqueda)) === $busqueda;
-}
-
-function obtenerIdioma()
-{
-    $idiomaDetectado = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-    /*
-    Si es algo como es_MX, es_US, etcétera, lo mandamos directamente a "es"
-    Si no, lo dejamos intacto y caerá por defecto en inglés
-     */
-    $idioma = cadenaEmpiezaCon($idiomaDetectado, "es") ? "es" : $idiomaDetectado;
-    return $idioma;
-}
-function traducir($cadena)
-{
-
-    $idioma = obtenerIdioma();
-    $traductor = new Translator($idioma);
-    $traductor->addLoader("json", new JsonFileLoader());
-    $traductor->addResource("json", "idioma_es.json", "es");
-    $traductor->addResource("json", "idioma_en.json", "en");
-    $traductor->setFallbackLocales(["en"]); // Si no se encuentra el idioma, utilizamos en por defecto
-    return $traductor->trans($cadena);
-}
-?>
-<?php
+include_once "traductor.php";
 $fotosPortafolio = [
     [
         "imagen" => "https://parzibyte.me/blog/wp-content/uploads/2020/03/Inicio-Punto-de-venta-con-Laravel-usuarios-y-clientes.png",
@@ -133,7 +101,7 @@ $fotosPortafolio = [
 shuffle($fotosPortafolio);
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo obtenerIdioma();?>" class="has-navbar-fixed-top">
+<html lang="<?php echo obtenerIdioma(); ?>" class="has-navbar-fixed-top">
 
 <head>
     <meta charset="UTF-8">
@@ -154,7 +122,265 @@ shuffle($fotosPortafolio);
     <?php include_once "portafolio.php"; ?>
     <?php include_once "contacto.php"; ?>
     <?php include_once "footer.php"; ?>
-    <script src="./js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const $selectTipoTrabajo = document.querySelector("#selectTipoTrabajo");
+            const $detallesConsultoria = document.querySelector("#detallesConsultoria"),
+                $detallesTarea = document.querySelector("#detallesTarea"),
+                $detallesModificacion = document.querySelector("#detallesModificacion"),
+                $detallesCreacion = document.querySelector("#detallesCreacion"),
+                $detallesCompra = document.querySelector("#detallesCompra"),
+                $pieFormulario = document.querySelector("#pieFormulario"),
+                $botonFormulario = document.querySelector("#botonFormulario"),
+                $minutos = document.querySelector("#minutos"),
+                $contenedorCosto = document.querySelector("#contenedorCosto"),
+                $contenedorMinutos = document.querySelector("#contenedorMinutos");
+
+
+            const reflejarCosto = () => {
+                const minutos = parseInt($minutos.value);
+                let costoPorMinutoEnDolares = 10;
+                if (minutos <= 10) {
+                    costoPorMinutoEnDolares = 0.2;
+                } else if (minutos > 10 && minutos <= 20) {
+                    costoPorMinutoEnDolares = 0.4;
+                } else if (minutos > 20 && minutos <= 30) {
+                    costoPorMinutoEnDolares = 0.5;
+                } else if (minutos > 30 && minutos <= 60) {
+                    costoPorMinutoEnDolares = 1;
+                } else if (minutos > 60) {
+                    costoPorMinutoEnDolares = 1.5;
+                }
+                const costo = minutos * costoPorMinutoEnDolares;
+                $contenedorMinutos.textContent = minutos;
+                $contenedorCosto.textContent = costo;
+            };
+            reflejarCosto();
+
+            $minutos.addEventListener("input", reflejarCosto);
+
+            const $formContacto = document.querySelector("#formContacto");
+            const ocultarTodo = () => {
+                [$detallesConsultoria, $detallesTarea, $detallesModificacion, $detallesCreacion, $detallesCompra, $pieFormulario].forEach($elemento => {
+                    $elemento.style.display = "none";
+                });
+            };
+            const onOpcionCambiada = () => {
+                ocultarTodo();
+                const opcion = $selectTipoTrabajo.value;
+                switch (opcion) {
+                    case "consultoria":
+                        consultoriaSeleccionada();
+                        break;
+                    case "tarea":
+                        tareaSeleccionada();
+                        break;
+                    case "modificacion":
+                        modificacionSeleccionada();
+                        break;
+                    case "creacion":
+                        creacionSeleccionada();
+                        break;
+                    case "compra":
+                        compraSeleccionada();
+                        break;
+                }
+            };
+            const consultoriaSeleccionada = () => {
+                $detallesConsultoria.style.display = "block";
+            };
+
+            const tareaSeleccionada = () => {
+                $detallesTarea.style.display = "block";
+                $pieFormulario.style.display = "block";
+            };
+            const modificacionSeleccionada = () => {
+                $detallesModificacion.style.display = "block";
+                $pieFormulario.style.display = "block";
+            };
+            const creacionSeleccionada = () => {
+                $detallesCreacion.style.display = "block";
+                $pieFormulario.style.display = "block";
+            };
+            const compraSeleccionada = () => {
+                $detallesCompra.style.display = "block";
+            };
+            $selectTipoTrabajo.addEventListener("change", () => {
+                onOpcionCambiada();
+            });
+            const enviarTarea = () => {
+                const $correo = document.querySelector(`[name="correoTarea"]`);
+                const $confirmarCorreo = document.querySelector(`[name="confirmarCorreoTarea"]`);
+                const $tecnologia = document.querySelector(`[name="tecnologiaTarea"]`);
+                const $mensaje = document.querySelector(`[name="mensajeTarea"]`);
+                const $terminos = document.querySelector(`[name="terminosTarea"]`);
+                if (!$correo.value) {
+                    return alert("<?php echo traducir("validar_correo") ?>");
+                }
+                if (!$confirmarCorreo.value) {
+                    return alert("<?php echo traducir("validar_confirmacion_correo") ?>");
+                }
+                if ($correo.value !== $confirmarCorreo.value) {
+                    return alert("<?php echo traducir("correos_no_coinciden") ?>");
+                }
+                if (!$tecnologia.value) {
+                    return alert("<?php echo traducir("validar_elegir_tecnologia") ?>");
+                }
+                if (!$mensaje.value) {
+                    return alert("<?php echo traducir("validar_mensaje") ?>");
+                }
+                if (!$terminos.checked) {
+                    return alert("<?php echo traducir("validar_terminos") ?>");
+                }
+                const captcha = grecaptcha.getResponse();
+                if (!captcha) {
+                    return alert("<?php echo traducir("validar_captcha") ?>");
+                }
+                const payload = {
+                    trabajo: $selectTipoTrabajo.value,
+                    correo: $correo.value,
+                    tecnologia: $tecnologia.selectedOptions[0].innerText,
+                    mensaje: $mensaje.value,
+                    captcha,
+                };
+                enviarPayload(payload);
+            };
+            const enviarModificacion = () => {
+                const $correo = document.querySelector(`[name="correoModificacion"]`);
+                const $confirmarCorreo = document.querySelector(`[name="confirmarCorreoModificacion"]`);
+                const $enlaceModificacion = document.querySelector(`[name="enlaceModificacion"]`);
+                const $mensaje = document.querySelector(`[name="mensajeModificacion"]`);
+                const $terminos = document.querySelector(`[name="terminosModificacion"]`);
+                if (!$correo.value) {
+                    return alert("<?php echo traducir("validar_correo") ?>");
+                }
+                if (!$confirmarCorreo.value) {
+                    return alert("<?php echo traducir("validar_confirmacion_correo") ?>");
+                }
+                if ($correo.value !== $confirmarCorreo.value) {
+                    return alert("<?php echo traducir("correos_no_coinciden") ?>");
+                }
+                const enlaceModificacion = $enlaceModificacion.value;
+                if (!enlaceModificacion) {
+                    return alert("<?php echo traducir("validar_link_modificacion") ?>");
+                }
+                const regexBlog = /^https:\/\/parzibyte\.me\/blog\/\d{4}\/\d{2}\/\d{2}\/.+/gm;
+                const regexYoutuBe = /^https:\/\/youtu\.be\/.+/gm;
+                const regexYouTube = /^https:\/\/(www\.)?youtube\.com\/watch\?v=.+/gm;
+                if (
+                    !regexBlog.test(enlaceModificacion) &&
+                    !regexYoutuBe.test(enlaceModificacion) &&
+                    !regexYouTube.test(enlaceModificacion)
+                ) {
+                    return alert("<?php echo traducir("validar_link_modificacion_mio") ?>");
+                }
+                if (!$mensaje.value) {
+                    return alert("<?php echo traducir("validar_mensaje") ?>");
+                }
+                if (!$terminos.checked) {
+                    return alert("<?php echo traducir("validar_terminos") ?>");
+                }
+                const captcha = grecaptcha.getResponse();
+                if (!captcha) {
+                    return alert("<?php echo traducir("validar_captcha") ?>");
+                }
+                const payload = {
+                    trabajo: $selectTipoTrabajo.value,
+                    correo: $correo.value,
+                    enlaceModificacion,
+                    mensaje: $mensaje.value,
+                    captcha,
+                };
+                enviarPayload(payload);
+            };
+
+            const enviarCreacion = () => {
+                const $correo = document.querySelector(`[name="correoCreacion"]`);
+                const $confirmarCorreo = document.querySelector(`[name="confirmarCorreoCreacion"]`);
+                const $tecnologia = document.querySelector(`[name="tecnologiaCreacion"]`);
+                const $mensaje = document.querySelector(`[name="mensajeCreacion"]`);
+                const $terminos = document.querySelector(`[name="terminosCreacion"]`);
+
+
+                if (!$correo.value) {
+                    return alert("<?php echo traducir("validar_correo") ?>");
+                }
+                if (!$confirmarCorreo.value) {
+                    return alert("<?php echo traducir("validar_confirmacion_correo") ?>");
+                }
+                if ($correo.value !== $confirmarCorreo.value) {
+                    return alert("<?php echo traducir("correos_no_coinciden") ?>");
+                }
+                if (!$tecnologia.value) {
+                    return alert("<?php echo traducir("validar_elegir_tecnologia") ?>");
+                }
+                if (!$mensaje.value) {
+                    return alert("<?php echo traducir("validar_mensaje") ?>");
+                }
+                if (!$terminos.checked) {
+                    return alert("<?php echo traducir("validar_terminos") ?>");
+                }
+                const captcha = grecaptcha.getResponse();
+                if (!captcha) {
+                    return alert("<?php echo traducir("validar_captcha") ?>");
+                }
+                const payload = {
+                    trabajo: $selectTipoTrabajo.value,
+                    correo: $correo.value,
+                    tecnologia: $tecnologia.selectedOptions[0].innerText,
+                    mensaje: $mensaje.value,
+                    captcha,
+                };
+                enviarPayload(payload);
+            };
+            const enviarPayload = async (payload) => {
+                $botonFormulario.classList.add("is-loading");
+                const response = await fetch("./correo.php", {
+                    method: "POST",
+                    body: JSON.stringify(payload),
+                });
+                const respuesta = await response.json();
+                $botonFormulario.classList.remove("is-loading");
+                if (respuesta === true) {
+                    Swal.fire('<?php echo traducir("mensaje_enviado") ?>', '<?php echo traducir("he_recibido_mensaje") ?>', 'success')
+                    $formContacto.reset();
+                    onOpcionCambiada();
+                } else {
+                    Swal.fire('Error', "<?php echo traducir("ocurrio_error") ?>" + respuesta, 'error')
+                }
+                grecaptcha.reset();
+            };
+            $formContacto.addEventListener("submit", evento => {
+                evento.preventDefault();
+                const opcion = $selectTipoTrabajo.value;
+                switch (opcion) {
+                    case "tarea":
+                        enviarTarea();
+                        break;
+                    case "modificacion":
+                        enviarModificacion();
+                        break;
+                    case "creacion":
+                        enviarCreacion();
+                        break;
+                }
+            })
+            onOpcionCambiada();
+            tns({
+                container: '#slider',
+                slideBy: 'page',
+                mouseDrag: true,
+                items: 3,
+                lazyload: true,
+                autoplay: true,
+                rewind: true,
+                gutter: 10,
+                controls: false,
+                nav: false,
+                autoplayButtonOutput: false,
+            });
+        });
+    </script>
 </body>
 
 </html>
