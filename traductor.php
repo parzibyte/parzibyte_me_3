@@ -1,9 +1,4 @@
-
 <?php
-include_once "vendor/autoload.php";
-
-use Symfony\Component\Translation\Loader\JsonFileLoader;
-use Symfony\Component\Translation\Translator;
 
 function cadenaEmpiezaCon($cadena, $busqueda)
 {
@@ -22,13 +17,19 @@ function obtenerIdioma()
 }
 function traducir($cadena)
 {
-
     $idioma = obtenerIdioma();
-    $traductor = new Translator($idioma);
-    $traductor->addLoader("json", new JsonFileLoader());
-    $traductor->addResource("json", "idioma_es.json", "es");
-    $traductor->addResource("json", "idioma_en.json", "en");
-    $traductor->setFallbackLocales(["en"]); // Si no se encuentra el idioma, utilizamos en por defecto
-    return $traductor->trans($cadena);
+    $contenido = null;
+    if ($idioma === "es") {
+        $contenido = file_get_contents("idioma_es.json");
+    } else {
+        $contenido = file_get_contents("idioma_en.json");
+    }
+    if (!$contenido) {
+        return $cadena;
+    }
+    $diccionario = json_decode($contenido);
+    if (!property_exists($diccionario, $cadena)) {
+        return $cadena;
+    }
+    return $diccionario->{$cadena};
 }
-?>
