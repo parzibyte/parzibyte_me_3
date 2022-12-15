@@ -1,4 +1,5 @@
 <?php
+include_once "traductor.php";
 define("CLAVE_CAPTCHA", "");
 
 /**
@@ -51,35 +52,35 @@ function verificarToken($token, $claveSecreta)
 
 $payload = json_decode(file_get_contents("php://input"));
 if (!$payload) {
-    echo json_encode("No hay carga útil");
+    echo json_encode(traducir("no_hay_payload"));
     exit;
 }
 
 if (!isset($payload->captcha)) {
-    echo json_encode("No hay captcha");
+    echo json_encode(traducir("validar_captcha"));
     exit;
 }
 $captchaOk = verificarToken($payload->captcha, CLAVE_CAPTCHA);
 if (!$captchaOk) {
-    echo json_encode("Token de captcha inválido. Intenta de nuevo");
+    echo json_encode(traducir("captcha_invalido"));
     exit;
 }
 
 if (!isset($payload->trabajo)) {
-    echo json_encode("No hay tipo de trabajo");
+    echo json_encode(traducir("validar_tipo_trabajo"));
     exit;
 }
 if (!isset($payload->correo)) {
-    echo json_encode("No hay correo");
+    echo json_encode(traducir("validar_correo"));
     exit;
 }
 if (!filter_var($payload->correo, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode("Correo inválido");
+    echo json_encode(traducir("validar_correo"));
     exit;
 }
 if ($payload->trabajo !== "modificacion") {
     if (!isset($payload->tecnologia)) {
-        echo json_encode("No hay tecnología");
+        echo json_encode(traducir("validar_elegir_tecnologia"));
         exit;
     }
 }
@@ -89,7 +90,7 @@ if (!isset($payload->mensaje)) {
 }
 if ($payload->trabajo === "modificacion") {
     if (!isset($payload->enlaceModificacion)) {
-        echo json_encode("No proporcionaste el enlace del software");
+        echo json_encode(traducir("validar_link_modificacion"));
         exit;
     }
     $expresionRegularBlog = '/^https:\/\/parzibyte\.me\/blog\/\d{4}\/\d{2}\/\d{2}\/.+/m';
@@ -99,11 +100,11 @@ if ($payload->trabajo === "modificacion") {
         preg_match($expresionRegularYoutuBe, $payload->enlaceModificacion) !== 1 &&
         preg_match($expresionRegularYouTube, $payload->enlaceModificacion) !== 1;
     if ($ningunaCoincide) {
-        echo json_encode("El enlace proporcionado no es de mi blog ni de YouTube");
+        echo json_encode(traducir("validar_link_modificacion_mio"));
         exit;
     }
 }
-$ip = empty($_SERVER["REMOTE_ADDR"]) ? "Desconocida" : $_SERVER["REMOTE_ADDR"];
+$ip = empty($_SERVER["REMOTE_ADDR"]) ? traducir("desconocida") : $_SERVER["REMOTE_ADDR"];
 $asunto = "";
 $cuerpo = "";
 $correo = $payload->correo;
@@ -113,7 +114,7 @@ $encabezados .= "Sender: contacto@parzibyte.me\r\n";
 $encabezados .= "Reply-To: $correo\r\n";
 switch ($payload->trabajo) {
     case "tarea":
-        $asunto = sprintf("Tarea en %s", $payload->tecnologia);
+        $asunto = traducir("tarea_en") . $payload->tecnologia;
         $cuerpo = sprintf(
             "Hola Parzibyte. Necesito una tarea en %s.\nMi correo es %s, a continuación te envío los detalles:\n%s\nAl enviar este mensaje estoy aceptando las condiciones publicadas en: https://parzibyte.me/blog/2021/03/17/consideraciones-tareas-programacion/.\nEste mensaje fue enviado desde la ip %s",
             $payload->tecnologia,
@@ -123,7 +124,7 @@ switch ($payload->trabajo) {
         );
         break;
     case "modificacion":
-        $asunto = "Modificación de software";
+        $asunto = traducir("modificacion_software");
         $cuerpo = sprintf(
             "Hola Parzibyte. Necesito que realices modificaciones al programa/software publicado en %s.\nMi correo es %s, a continuación te envío los detalles de lo que necesito:\n%s\nAl enviar este mensaje estoy aceptando las condiciones publicadas en: https://parzibyte.me/blog/2022/11/05/consideraciones-modificacion-creacion-software/.\nEste mensaje fue enviado desde la ip %s",
             $payload->enlaceModificacion,
@@ -133,7 +134,7 @@ switch ($payload->trabajo) {
         );
         break;
     case "creacion":
-        $asunto = sprintf("Creación de software en %s", $payload->tecnologia);
+        $asunto = traducir("creacion_de_software_en") . $payload->tecnologia;
         $cuerpo = sprintf(
             "Hola Parzibyte. Necesito crear un programa/software con %s.\nMi correo es %s, a continuación te envío los detalles:\n%s\nAl enviar este mensaje estoy aceptando las condiciones publicadas en: https://parzibyte.me/blog/2022/11/05/consideraciones-modificacion-creacion-software/.\nEste mensaje fue enviado desde la ip %s",
             $payload->tecnologia,
@@ -144,12 +145,12 @@ switch ($payload->trabajo) {
         break;
 }
 if (empty($asunto) || empty($cuerpo)) {
-    echo json_encode("El asunto y/o el cuerpo están vacíos");
+    echo json_encode(traducir("asunto_o_cuerpo_vacios"));
     exit;
 }
-$resultado = mail($destinatario, mb_strimwidth($asunto, 0, 40), $cuerpo, $encabezados);
+$resultado = @mail($destinatario, mb_strimwidth($asunto, 0, 40), $cuerpo, $encabezados);
 if ($resultado) {
     echo json_encode(true);
 } else {
-    echo json_encode("Error enviando el correo. Intenta más tarde");
+    echo json_encode(traducir("error_enviando_correo"));
 }
