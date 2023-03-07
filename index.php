@@ -139,19 +139,19 @@ shuffle($fotosPortafolio);
 
             const reflejarCosto = () => {
                 const minutos = parseInt($minutos.value);
-                let costoPorMinutoEnDolares = 10;
+                let costoPorMinutoEnPesosMexicanos = 10;
                 if (minutos <= 10) {
-                    costoPorMinutoEnDolares = 0.2;
+                    costoPorMinutoEnPesosMexicanos = 4;
                 } else if (minutos > 10 && minutos <= 20) {
-                    costoPorMinutoEnDolares = 0.4;
+                    costoPorMinutoEnPesosMexicanos = 8;
                 } else if (minutos > 20 && minutos <= 30) {
-                    costoPorMinutoEnDolares = 0.5;
+                    costoPorMinutoEnPesosMexicanos = 10;
                 } else if (minutos > 30 && minutos <= 60) {
-                    costoPorMinutoEnDolares = 1;
+                    costoPorMinutoEnPesosMexicanos = 20;
                 } else if (minutos > 60) {
-                    costoPorMinutoEnDolares = 1.5;
+                    costoPorMinutoEnPesosMexicanos = 30;
                 }
-                const costo = minutos * costoPorMinutoEnDolares;
+                const costo = minutos * costoPorMinutoEnPesosMexicanos;
                 $contenedorMinutos.textContent = minutos;
                 $contenedorCosto.textContent = costo;
             };
