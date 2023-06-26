@@ -113,6 +113,15 @@ $encabezados = "From: $correo\r\n";
 $encabezados .= "Sender: contacto@parzibyte.me\r\n";
 $encabezados .= "Reply-To: $correo\r\n";
 switch ($payload->trabajo) {
+    case "mensajeDirecto":
+        $asunto = "Consulta";
+        $cuerpo = sprintf(
+            "Hola Parzibyte.\nMi correo es %s\n%s\nEste mensaje fue enviado desde la ip %s",
+            $payload->correo,
+            $payload->mensaje,
+            $ip
+        );
+        break;
     case "tarea":
         $asunto = traducir("tarea_en") . $payload->tecnologia;
         $cuerpo = sprintf(

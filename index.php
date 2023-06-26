@@ -130,6 +130,7 @@ shuffle($fotosPortafolio);
                 $detallesModificacion = document.querySelector("#detallesModificacion"),
                 $detallesCreacion = document.querySelector("#detallesCreacion"),
                 $detallesCompra = document.querySelector("#detallesCompra"),
+                $detallesMensajeDirecto = document.querySelector("#detallesMensajeDirecto"),
                 $pieFormulario = document.querySelector("#pieFormulario"),
                 $botonFormulario = document.querySelector("#botonFormulario"),
                 $minutos = document.querySelector("#minutos"),
@@ -161,7 +162,7 @@ shuffle($fotosPortafolio);
 
             const $formContacto = document.querySelector("#formContacto");
             const ocultarTodo = () => {
-                [$detallesConsultoria, $detallesTarea, $detallesModificacion, $detallesCreacion, $detallesCompra, $pieFormulario].forEach($elemento => {
+                [$detallesConsultoria, $detallesTarea, $detallesModificacion, $detallesCreacion, $detallesCompra, $pieFormulario, $detallesMensajeDirecto].forEach($elemento => {
                     $elemento.style.display = "none";
                 });
             };
@@ -184,6 +185,9 @@ shuffle($fotosPortafolio);
                     case "compra":
                         compraSeleccionada();
                         break;
+                    case "mensajeDirecto":
+                        mensajeDirectoSeleccionado();
+                        break;
                 }
             };
             const consultoriaSeleccionada = () => {
@@ -204,6 +208,10 @@ shuffle($fotosPortafolio);
             };
             const compraSeleccionada = () => {
                 $detallesCompra.style.display = "block";
+            };
+            const mensajeDirectoSeleccionado = () => {
+                $detallesMensajeDirecto.style.display = "block";
+                $pieFormulario.style.display = "block";
             };
             $selectTipoTrabajo.addEventListener("change", () => {
                 onOpcionCambiada();
@@ -294,6 +302,38 @@ shuffle($fotosPortafolio);
                 enviarPayload(payload);
             };
 
+
+            const enviarMensajeDirecto = () => {
+                const $correo = document.querySelector(`[name="correoMensajeDirecto"]`);
+                const $confirmarCorreo = document.querySelector(`[name="confirmarCorreoMensajeDirecto"]`);
+                const $mensaje = document.querySelector(`[name="mensajeDirecto"]`);
+
+                if (!$correo.value) {
+                    return alert("<?php echo traducir("validar_correo") ?>");
+                }
+                if (!$confirmarCorreo.value) {
+                    return alert("<?php echo traducir("validar_confirmacion_correo") ?>");
+                }
+                if ($correo.value !== $confirmarCorreo.value) {
+                    return alert("<?php echo traducir("correos_no_coinciden") ?>");
+                }
+                if (!$mensaje.value) {
+                    return alert("<?php echo traducir("validar_mensaje") ?>");
+                }
+                const captcha = grecaptcha.getResponse();
+                if (!captcha) {
+                    return alert("<?php echo traducir("validar_captcha") ?>");
+                }
+                const payload = {
+                    trabajo: $selectTipoTrabajo.value,
+                    correo: $correo.value,
+                    tecnologia: "",
+                    mensaje: $mensaje.value,
+                    captcha,
+                };
+                enviarPayload(payload);
+            };
+
             const enviarCreacion = () => {
                 const $correo = document.querySelector(`[name="correoCreacion"]`);
                 const $confirmarCorreo = document.querySelector(`[name="confirmarCorreoCreacion"]`);
@@ -362,6 +402,9 @@ shuffle($fotosPortafolio);
                         break;
                     case "creacion":
                         enviarCreacion();
+                        break;
+                    case "mensajeDirecto":
+                        enviarMensajeDirecto();
                         break;
                 }
             })

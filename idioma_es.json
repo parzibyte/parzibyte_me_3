@@ -53,7 +53,7 @@
     "trabajo_consultoria_condicion_2": "En caso de realizar el pago, el mismo solo será válido para el trabajo solicitado desde el inicio, no se podrá destinar a otro servicio. Si el cliente decide no llevar a cabo el proyecto, el saldo abonado no se puede devolver ni dirigir a otro tipo de servicio.",
     "trabajo_consultoria_condicion_3": "Por favor, realice únicamente el pago del tiempo que usará, ya que si el pago se excede y el servicio se termina antes no se harán devoluciones",
     "trabajo_consultoria_usuario_acepta": "Al realizar el pago usted está aceptando las consideraciones listadas arriba",
-    "trabajo_creacion_pdf": "Agradecería si tienes un PDF explicando lo que necesitas como se indica en <a target=\"_blank\" href=\"https: //parzibyte.me/blog/2022/04/17/solicitar-software-personalizado-cambios-uno-existente/\">https://parzibyte.me/blog/2022/04/17/solicitar-software-personalizado-cambios-uno-existente/</a>",
+    "trabajo_creacion_pdf": "Agradecería si tienes un PDF explicando lo que necesitas como se indica en <a target=\"_blank\" href=\"https://parzibyte.me/blog/2022/04/17/solicitar-software-personalizado-cambios-uno-existente/\">https://parzibyte.me/blog/2022/04/17/solicitar-software-personalizado-cambios-uno-existente/</a>",
     "correo_electronico": "Correo electrónico",
     "placeholder_correo_electronico": "Escribe tu correo electrónico",
     "confirmar_correo_electronico": "Confirmar correo electrónico",
@@ -92,5 +92,6 @@
     "modificacion_software": "Modificación de software",
     "creacion_de_software_en": "Creación de software en ",
     "asunto_o_cuerpo_vacios": "El asunto y/o cuerpo del correo están vacíos",
-    "error_enviando_correo": "Error enviando correo. Intenta más tarde"
+    "error_enviando_correo": "Error enviando correo. Intenta más tarde",
+    "mensaje_directo": "Mensaje directo"
 }

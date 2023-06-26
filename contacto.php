@@ -21,6 +21,7 @@
                         <div class="control">
                             <div class="select">
                                 <select name="tipoTrabajo" id="selectTipoTrabajo">
+                                    <option value="mensajeDirecto"><?php echo traducir("mensaje_directo") ?></option>
                                     <option value="consultoria"><?php echo traducir("consultoria") ?></option>
                                     <option value="tarea"><?php echo traducir("tarea") ?></option>
                                     <option value="modificacion"><?php echo traducir("modificacion") ?></option>
@@ -30,6 +31,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php include_once "trabajo_mensaje_directo.php"; ?>
                     <?php include_once "trabajo_consultoria.php"; ?>
                     <?php include_once "trabajo_tarea.php"; ?>
                     <?php include_once "trabajo_modificacion.php"; ?>

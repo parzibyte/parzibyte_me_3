@@ -92,5 +92,6 @@
     "modificacion_software": "Software modification",
     "creacion_de_software_en": "Make software in ",
     "asunto_o_cuerpo_vacios": "Email subject or body are empty",
-    "error_enviando_correo": "Unable to send the email. Please try again later"
+    "error_enviando_correo": "Unable to send the email. Please try again later",
+    "mensaje_directo": "Direct message"
 }
