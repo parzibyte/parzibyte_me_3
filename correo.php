@@ -88,6 +88,10 @@ if (!isset($payload->mensaje)) {
     echo json_encode("No hay mensaje");
     exit;
 }
+if (mb_strlen($payload->mensaje) > 128) {
+    echo json_encode("Request too long");
+    exit;
+}
 if ($payload->trabajo === "modificacion") {
     if (!isset($payload->enlaceModificacion)) {
         echo json_encode(traducir("validar_link_modificacion"));

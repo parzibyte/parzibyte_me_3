@@ -43,7 +43,7 @@
     <div class="field">
         <label class="label"><?php echo traducir("mensaje") ?></label>
         <div class="control">
-            <textarea name="mensajeTarea" class="textarea" placeholder="<?php echo traducir("mensaje") ?>"></textarea>
+            <textarea maxlength="128" name="mensajeTarea" class="textarea" placeholder="<?php echo traducir("mensaje") ?>"></textarea>
         </div>
     </div>
     <div class="notification is-success">
