@@ -18,7 +18,6 @@
                 <ul>
                     <li> <a href="#"><?php echo traducir("inicio") ?></a> </li>
                     <li> <a href="#servicios"><?php echo traducir("servicios") ?></a> </li>
-                    <li> <a href="#portafolio"><?php echo traducir("portafolio") ?></a> </li>
                     <li> <a href="#contacto"><?php echo traducir("contacto") ?></a> </li>
                 </ul>
             </div>

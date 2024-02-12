@@ -15,41 +15,24 @@
                 <img src="./images/contact.svg" alt="<?php echo traducir("contacto"); ?>">
             </div>
             <div class="column">
-                <form action="correo.php" method="post" id="formContacto">
-                    <div class="field">
-                        <label class="label"><?php echo traducir("como_puedo_ayudarte") ?></label>
-                        <div class="control">
-                            <div class="select">
-                                <select name="tipoTrabajo" id="selectTipoTrabajo">
-                                    <option value="mensajeDirecto"><?php echo traducir("mensaje_directo") ?></option>
-                                    <option value="consultoria"><?php echo traducir("consultoria") ?></option>
-                                    <option value="tarea"><?php echo traducir("tarea") ?></option>
-                                    <option value="modificacion"><?php echo traducir("modificacion") ?></option>
-                                    <option value="creacion"><?php echo traducir("creacion") ?></option>
-                                    <option value="compra"><?php echo traducir("compra") ?></option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <?php include_once "trabajo_mensaje_directo.php"; ?>
-                    <?php include_once "trabajo_consultoria.php"; ?>
-                    <?php include_once "trabajo_tarea.php"; ?>
-                    <?php include_once "trabajo_modificacion.php"; ?>
-                    <?php include_once "trabajo_creacion.php"; ?>
-                    <?php include_once "trabajo_compra.php"; ?>
-                    <div id="pieFormulario">
-                        <div class="field">
-                            <div class="g-recaptcha" data-sitekey="6LcQh0UUAAAAAGxeWVi1VubbM2z1GmEZeWJXH0x0">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <button id="botonFormulario" class="button is-link"><?php echo traducir("enviar") ?></button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <p class="title"> <?php echo traducir("a_tus_ordenes"); ?> </p>
+                <p class="subtitle"> <?php echo traducir("mi_correo_y_telegram"); ?> </p>
+                <a class="button is-info is-rounded" href="https://t.me/parzibyte"> <?php echo traducir("telegram"); ?> </a>
+                <button id="btnCorreo" class="button is-warning is-rounded"> <?php echo traducir("copiar_correo"); ?> </button>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const $btnCorreo = document.querySelector("#btnCorreo");
+            $btnCorreo.addEventListener("click", async () => {
+                const original = $btnCorreo.textContent;
+                await navigator.clipboard.writeText(["e", "t", "y", "b", "i", "z", "r", "a", "p"].reverse().join("") + "@gmail.com");
+                $btnCorreo.textContent = "<?php echo traducir("copiado"); ?>";
+                setTimeout(() => {
+                    $btnCorreo.textContent = original;
+                }, 500);
+            });
+        });
+    </script>
 </section>

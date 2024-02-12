@@ -9,7 +9,7 @@
     "creacion": "Creación de software",
     "compra": "Compra de plugin, software por licencia y/o código fuente",
     "enviar": "Enviar",
-    "conecta_conmigo": "Conéctate conmigo (no responderé mensajes, solo puedes seguirme)",
+    "conecta_conmigo": "Redes sociales",
     "navegacion": "Menú",
     "inicio": "Inicio",
     "servicios": "Servicios",
@@ -93,5 +93,10 @@
     "creacion_de_software_en": "Creación de software en ",
     "asunto_o_cuerpo_vacios": "El asunto y/o cuerpo del correo están vacíos",
     "error_enviando_correo": "Error enviando correo. Intenta más tarde",
-    "mensaje_directo": "Mensaje directo"
+    "mensaje_directo": "Mensaje directo",
+    "a_tus_ordenes": "Estoy a tus órdenes en el correo y en Telegram",
+    "mi_correo_y_telegram": "Mi correo es parzibyte(arroba)gmail.com, en Telegram me encuentras como @parzibyte",
+    "telegram": "Telegram",
+    "copiar_correo": "Copiar dirección de correo",
+    "copiado": "Copiado"
 }

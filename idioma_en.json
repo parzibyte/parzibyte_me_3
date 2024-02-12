@@ -93,5 +93,10 @@
     "creacion_de_software_en": "Make software in ",
     "asunto_o_cuerpo_vacios": "Email subject or body are empty",
     "error_enviando_correo": "Unable to send the email. Please try again later",
-    "mensaje_directo": "Direct message"
+    "mensaje_directo": "Direct message",
+    "a_tus_ordenes": "I am at your service via email and on Telegram",
+    "mi_correo_y_telegram": "My email is parzibyte(at)gmail.com and you can find me as @parzibyte on Telegram",
+    "telegram": "Telegram",
+    "copiar_correo": "Copy email address",
+    "copiado": "Copied"
 }
